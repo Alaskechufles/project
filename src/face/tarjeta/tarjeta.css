@@ -2,6 +2,10 @@
   width: 395px;
 }
 
+.tarjetas {
+  padding-bottom: 60px;
+}
+
 .box-img {
   width: 395px;
   height: 269px;
@@ -32,14 +36,37 @@
   flex-direction: row;
   font-size: 14px;
   gap: 7px;
+  margin-left: 20px;
 }
 
-.super-host {
+#super-host {
+  font-size: 12px;
+}
+
+.super-box {
   padding: 7px 9px;
   border: solid 1px black;
   font-weight: 700;
   border-radius: 12px;
   font-size: 12px;
+}
+
+.empty {
+  width: 1px;
+}
+
+.fixed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 250px;
+}
+
+.fixed-ns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 400px;
 }
 
 .type-text {

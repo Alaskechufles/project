@@ -4,28 +4,35 @@ import Star from '../../icons/star-fill.jsx'
 
 
 export default function Tarjeta(prop) {
+    /* const superH = document.getElementById("super-host")
+    if (prop.super) {
+        superH.innerHTML = `<p className='super-box'>SUPER HOST</p>`
+    } else { superH.innerHTML = "" } */
     return (
         <Fragment>
-            <div className='tarjeta'>
+            <div className='tarjeta' key={prop.key}>
                 <div className='box-img'>
                     <img className='img' src={prop.imgs} alt="cuartos" />
                 </div>
                 <div className='type'>
-                    <div className='super-host'>
-                        <p>SUPER HOST</p>
+                    <div id='super-host'>
+                        <p className={(prop.super) ? 'super-box' : "empty"}>{(prop.super) ? "SUPER HOST" : ""}</p>
                     </div>
-                    <div className='type-text'>
-                        <p>Entire apartment . 2 beds</p>
-                    </div>
-                    <div className='rate'>
-                        <div className='box-star'>
-                            <Star />
+                    <div className={(prop.super) ? "fixed" : "fixed-ns"}>
+                        <div className='type-text'>
+                            <p>{!(prop.bed) ? "private room" : prop.content + ". " + prop.bed + " beds"}</p>
                         </div>
-                        <p>4.40</p>
+                        <div className='rate'>
+                            <div className='box-star'>
+                                <Star />
+                            </div>
+                            <p>{prop.rate}</p>
+                        </div>
                     </div>
+
                 </div>
                 <div className='description'>
-                    <p>Stylist apartment in center of the city</p>
+                    <p>{prop.descript}</p>
                 </div>
             </div>
         </Fragment>
