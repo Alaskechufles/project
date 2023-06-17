@@ -1,0 +1,45 @@
+.head-face {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 66px 99px 32px 91px;
+}
+.tarjetas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.box-icon {
+  margin: 46px 0 0 94px;
+}
+
+.buscador {
+  display: flex;
+  flex-direction: row;
+  padding: 19px 16px 19px 16px;
+  margin: 32px 96px 0 0;
+  gap: 35px;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  border: solid white 1px;
+  background-color: white;
+}
+
+.buscador:hover {
+  cursor: pointer;
+}
+
+.box-lupa {
+  color: rgb(235, 87, 87);
+}
