@@ -12,6 +12,7 @@
   gap: 32px;
   align-items: center;
   justify-content: center;
+  /*Aumentar padding boton 50px min*/
 }
 .nav {
   display: flex;

@@ -4,10 +4,6 @@ import Star from '../../icons/star-fill.jsx'
 
 
 export default function Tarjeta(prop) {
-    /* const superH = document.getElementById("super-host")
-    if (prop.super) {
-        superH.innerHTML = `<p className='super-box'>SUPER HOST</p>`
-    } else { superH.innerHTML = "" } */
     return (
         <Fragment>
             <div className='tarjeta' key={prop.key}>
