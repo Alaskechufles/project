@@ -84,52 +84,48 @@ function App() {
   */
   const [contenedor, setContenedor] = useState([])
   const [filtro, setFiltro] = useState("")
-  const [filtroCamas, setFiltroCamas] = useState("")
+  const [filtroCamas, setFiltroCamas] = useState(0)
 
-
+  console.log(typeof (filtroCamas))
 
   //capturar lo que escribe el ususario en el input
   const busqueda1 = (e) => {
     setFiltro(e.target.value)
 
 
-    filtrado1(e.target.value)
+    /*   filtrado1(e.target.value, e.target.value) */
     /* console.log(e.target.value) */
   }
   const busqueda2 = (e) => {
+    let pastel = parseInt(e.target.value)
 
-    setFiltroCamas(e.target.value)
-    filtrado2(e.target.value)
-    console.log(e.target.value)
+    setFiltroCamas(pastel)
+    /*  filtrado1(e.target.value, e.target.value) */
+    console.log(typeof (e.target.value))
+
   }
 
 
-  /* const valL = document.getElementById("locationInput")
-  const valC = document.getElementById("camas") */
+  const valL = document.getElementById("locationInput") ? document.getElementById("locationInput").value : ""
+  const valC = document.getElementById("camas") ? document.getElementById("camas").value : ""
 
 
-  const filtrado1 = (texto) => {
+  const filtrado1 = (texto, camas) => {
+    console.log(typeof (camas))
+    let pastel = parseInt(camas)
+    console.log(typeof (pastel))
     const elementosFiltrados = contenedor.filter((elemento) => {
-      if (elemento.city.toString().toLowerCase().includes(texto.toLowerCase())
-      ) {
+      if (elemento.city.toString().toLowerCase().includes(texto.toLowerCase()) && elemento.maxGuests === pastel) {
+        /* if (elemento.maxGuests === pastel) {
+          return elemento
+        } */
         return elemento;
       }
 
     });
     setData(elementosFiltrados)
+    console.log(typeof (camas))
   }
-  const filtrado2 = (camas) => {
-    let elementosFiltrados = contenedor.filter((elemento2) => {
-      if (
-
-        elemento2.maxGuests == camas
-      ) {
-        return elemento2;
-      }
-    });
-    setData(elementosFiltrados)
-  }
-
   return (
     <Fragment>
 
@@ -172,7 +168,7 @@ function App() {
             <div className="guests-area">
               <div className="guests-head">
                 <h2>Guests</h2>
-                <input id="camas" type="text" placeholder="Add guests" value={filtroCamas} onChange={busqueda2} />
+                <input id="camas" type="number" placeholder="Add guests" value={filtroCamas} onChange={busqueda2} />
               </div>
               <div className="guests-options">
                 <div className="adults">
@@ -197,7 +193,7 @@ function App() {
             </div>
             <div className="search-area">
               <div className="search-button">
-                <button className="search-button-cont" onClick={() => { toggleClass(); /* filtrado1(valL, valC) *//* ; filtrado2() */ }} >
+                <button className="search-button-cont" onClick={() => { toggleClass(); filtrado1(valL, valC)/* ; filtrado2() */ }} >
                   <div className="lupa-search">
                     <SearchIcon />
                   </div>
