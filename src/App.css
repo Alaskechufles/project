@@ -8,6 +8,18 @@ body {
   background-color: white;
   font-family: "Montserrat", sans-serif;
 }
+/*
+*Esto es para quitar las flechas en input tipo number, gracias a chatGPT
+*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
 
 /*tarjeta css*/
 .tarjeta {
@@ -225,6 +237,20 @@ body {
   outline: none;
 }
 
+.location-options {
+  transition: all 0.5s ease;
+}
+.unactive-op {
+  position: absolute;
+  top: 150px;
+  opacity: 1;
+}
+.active-op {
+  position: absolute;
+  top: -150px;
+  opacity: 0;
+}
+
 .option {
   display: flex;
   flex-direction: row;
@@ -346,5 +372,7 @@ body {
   border: 1px solid rgb(234, 101, 101);
   gap: 10px;
 }
-
+.search-button-cont:hover {
+  cursor: pointer;
+}
 /*fin Search*/

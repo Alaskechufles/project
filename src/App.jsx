@@ -8,34 +8,22 @@ import Logo from "./face/Logo";
 import Tarjeta from "./face/tarjeta/Tarjeta";
 
 function App() {
-
-  // La variable data es la que va a almacenar los datos de "stays.json" y setData nos ayudará a guardar esos datos en esa variable. Es necesario que inicialicemos esa variable como un array vacío para evitar errores.
   const [data, setData] = useState([]);
 
-  // Función para traer los datos de "stays.json".
   const getData = async () => {
-    // Esta sentencia try-catch sirve para manejar los errores que se podrían generar al importar los datos de "stays.json".
     try {
       const res = await fetch("stays.json");
       const resJson = await res.json();
-      // Aquí guardamos los datos de "stays.json" en la variable data.
       setData(resJson);
-      // Aquí gurdo los datos tambien en el contenedor
       setContenedor(resJson);
     } catch (error) {
       console.log(error);
     }
   };
-
-  // Este Hook te va a ejecutar la función getData cada vez que la página se renderice.
   useEffect(() => {
     getData();
   }, []);
-
-  // Puedes ver la variable data en consola.
   console.log(data);
-  //filtro de busqueda
-
   //conteo de personas
   const [countA, setCount] = useState(0);
   const buttonSum = () => {
@@ -51,34 +39,42 @@ function App() {
   const buttonRedC = () => {
     setCountC(countC - 1);
   };
-  /* let numG = parseInt(countA + countC) */
-  /* let numGuest = numG ? `${numG} guests` : "Add guests"; */
+  let numGuest = countA + countC
+  let numG = numGuest >= 0 ? parseInt(countA + countC) : "Add guests"
+
   //cambio de location
-  //! no permite buscar correctamente por eso esta inhabilitado
-  /* const input = document.getElementById("locationInput")
+  const input = document.getElementById("locationInput")
   const [location, setLocation] = useState("")
 
   function insertLocation(parameter, el = input) {
     setLocation(parameter)
     el.value = location
-  } */
-
-
+  }
   //mostrar y ocultar opciones
-
   const [isActive, setIsActive] = useState(false);
   const toggleClass = () => {
     setIsActive(!isActive);
   }
+  //desplegar barra
   const claseElemento = isActive ? "bar active" : "bar search"
-
+  //background difuminado
   const backg = isActive ? "b noBack" : "b back"
 
+
+
+  //options
+  const [isActiveO, setIsActiveO] = useState(false);
+  const toggleClassO = () => {
+    setIsActiveO(!isActiveO);
+  }
+  const claseOption = isActiveO ? "location-options" : "active-op"
+  const claseGuests = isActiveO ? "guests-options" : "active-op"
   /*
   * aqui podemo agregar mostrar las opciones de busqueda
    */
 
   //filtro
+
   /* const [data, setData] = useState([]) 
   *Este esta declarado en la parte de arriba linea 13
   */
@@ -97,8 +93,8 @@ function App() {
     /* console.log(e.target.value) */
   }
   const busqueda2 = (e) => {
-    let pastel = parseInt(e.target.value)
-
+    /* let pastel = parseInt(e.target.value) */
+    let pastel = numG
     setFiltroCamas(pastel)
     /*  filtrado1(e.target.value, e.target.value) */
     console.log(typeof (e.target.value))
@@ -115,7 +111,7 @@ function App() {
     let pastel = parseInt(camas)
     console.log(typeof (pastel))
     const elementosFiltrados = contenedor.filter((elemento) => {
-      if (elemento.city.toString().toLowerCase().includes(texto.toLowerCase()) && elemento.maxGuests === pastel) {
+      if (elemento.city.toString().toLowerCase().match(texto.toLowerCase()) && elemento.maxGuests >= pastel) {
         /* if (elemento.maxGuests === pastel) {
           return elemento
         } */
@@ -134,43 +130,43 @@ function App() {
         <div className={claseElemento} id="search-bar-t">
           <div className="search-bar">
             <div className="location-area">
-              <div className="location-head">
+              <div className="location-head" onClick={toggleClassO}>
                 <h2>LOCATION</h2>
-                <input id="locationInput" type="text" placeholder="Add location" value={filtro} onChange={busqueda1} />
+                <input id="locationInput" type="text" placeholder="Add location" value={filtro} onChange={busqueda1} autoComplete="off" />
               </div>
-              <div className="location-options">
+              <div className={claseOption} >
                 <div className="option">
                   <div className="box-icon-search">
                     <Geo />
                   </div>
-                  <h2 >Helsinki, Finland</h2>
+                  <h2 onClick={() => insertLocation("Helsinki")}>Helsinki, Finland</h2>
                 </div>
                 <div className="option">
                   <div className="box-icon-search">
                     <Geo />
                   </div>
-                  <h2>Turku, Finland</h2>
+                  <h2 onClick={() => insertLocation("Turku")}>Turku, Finland</h2>
                 </div>
                 <div className="option">
                   <div className="box-icon-search">
                     <Geo />
                   </div>
-                  <h2 >Oulu, Finland</h2>
+                  <h2 onClick={() => insertLocation("Oulu")} >Oulu, Finland</h2>
                 </div>
                 <div className="option">
                   <div className="box-icon-search">
                     <Geo />
                   </div>
-                  <h2 >Vaasa, Finland</h2>
+                  <h2 onClick={() => insertLocation("Vaasa")}>Vaasa, Finland</h2>
                 </div>
               </div>
             </div>
             <div className="guests-area">
-              <div className="guests-head">
+              <div className="guests-head" onClick={toggleClassO}>
                 <h2>Guests</h2>
-                <input id="camas" type="number" placeholder="Add guests" value={filtroCamas} onChange={busqueda2} />
+                <input id="camas" type="number" placeholder="Add guests" value={numG} onChange={busqueda2} />
               </div>
-              <div className="guests-options">
+              <div className={claseGuests}>
                 <div className="adults">
                   <h2>Adults</h2>
                   <h3>Ages 13 or above</h3>
