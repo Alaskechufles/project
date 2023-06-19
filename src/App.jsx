@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Geo from './icons/Geo'
 import SearchIcon from './icons/SearchIcon'
-/* import Face from "./face/Face"; */
 import Logo from "./face/Logo";
 import Tarjeta from "./face/tarjeta/Tarjeta";
 
@@ -74,10 +73,6 @@ function App() {
    */
 
   //filtro
-
-  /* const [data, setData] = useState([]) 
-  *Este esta declarado en la parte de arriba linea 13
-  */
   const [contenedor, setContenedor] = useState([])
   const [filtro, setFiltro] = useState("")
   const [filtroCamas, setFiltroCamas] = useState(0)
@@ -87,21 +82,14 @@ function App() {
   //capturar lo que escribe el ususario en el input
   const busqueda1 = (e) => {
     setFiltro(e.target.value)
-
-
-    /*   filtrado1(e.target.value, e.target.value) */
-    /* console.log(e.target.value) */
   }
   const busqueda2 = (e) => {
-    /* let pastel = parseInt(e.target.value) */
+
     let pastel = numG
     setFiltroCamas(pastel)
-    /*  filtrado1(e.target.value, e.target.value) */
+
     console.log(typeof (e.target.value))
-
   }
-
-
   const valL = document.getElementById("locationInput") ? document.getElementById("locationInput").value : ""
   const valC = document.getElementById("camas") ? document.getElementById("camas").value : ""
 
@@ -112,9 +100,7 @@ function App() {
     console.log(typeof (pastel))
     const elementosFiltrados = contenedor.filter((elemento) => {
       if (elemento.city.toString().toLowerCase().match(texto.toLowerCase()) && elemento.maxGuests >= pastel) {
-        /* if (elemento.maxGuests === pastel) {
-          return elemento
-        } */
+
         return elemento;
       }
 
